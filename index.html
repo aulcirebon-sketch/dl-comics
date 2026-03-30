@@ -1,1 +1,270 @@
 # DL-comic-
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DL COMIC - Cirebon</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#ffffff;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    /* NAVBAR */
+    header{
+      position:fixed;
+      top:0;
+      width:100%;
+      background:#E53935;
+      color:#fff;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 40px;
+      z-index:1000;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    header h1{
+      font-size:22px;
+      letter-spacing:1px;
+    }
+
+    nav a{
+      color:#fff;
+      margin-left:20px;
+      text-decoration:none;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      opacity:0.7;
+    }
+
+    /* HERO */
+    .hero{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:100px 60px 60px;
+      background:linear-gradient(135deg,#fff,#f5f5f5);
+    }
+
+    .hero-text{
+      max-width:600px;
+      animation:fadeUp 1s ease;
+    }
+
+    .hero-text h2{
+      font-size:42px;
+      color:#E53935;
+      margin-bottom:20px;
+      line-height:1.2;
+    }
+
+    .hero-text p{
+      font-size:16px;
+      margin-bottom:25px;
+      color:#444;
+    }
+
+    .btn{
+      padding:12px 20px;
+      border:none;
+      cursor:pointer;
+      border-radius:8px;
+      margin-right:10px;
+      transition:0.3s;
+      font-weight:600;
+    }
+
+    .btn-primary{
+      background:#E53935;
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 20px rgba(229,57,53,0.3);
+    }
+
+    .btn-outline{
+      background:transparent;
+      border:2px solid #E53935;
+      color:#E53935;
+    }
+
+    .btn-outline:hover{
+      background:#E53935;
+      color:#fff;
+    }
+
+    .hero img{
+      width:420px;
+      animation:float 3s ease-in-out infinite;
+    }
+
+    /* SECTION */
+    section{
+      padding:80px 60px;
+      text-align:center;
+    }
+
+    .title{
+      font-size:32px;
+      margin-bottom:40px;
+      color:#E53935;
+    }
+
+    /* FEATURES */
+    .features{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:#fff;
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+      transition:0.4s;
+      opacity:0;
+      transform:translateY(40px);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    /* COMICS */
+    .comics{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+    }
+
+    .comic{
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 10px 20px rgba(0,0,0,0.1);
+      transition:0.3s;
+      opacity:0;
+      transform:translateY(40px);
+      background:#fff;
+    }
+
+    .comic:hover{
+      transform:scale(1.05);
+    }
+
+    .comic img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+    }
+
+    .comic-content{
+      padding:15px;
+    }
+
+    /* ANIMATION */
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(40px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(-15px);}
+      100%{transform:translateY(0px);}
+    }
+
+    /* FOOTER */
+    footer{
+      background:#E53935;
+      color:#fff;
+      text-align:center;
+      padding:20px;
+      margin-top:50px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .hero img{
+        width:300px;
+        margin-top:30px;
+      }
+    }
+  </style></head><body><header>
+  <h1>DL COMIC</h1>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#features">Fitur</a>
+    <a href="#comics">Komik</a>
+  </nav>
+</header><!-- HERO --><section class="hero" id="hero">
+  <div class="hero-text">
+    <h2>Tempatnya Komik Berkualitas Tinggi – Baca, Nikmati, dan Koleksi Sekarang!</h2>
+    <p>Baca komik online atau beli komik cetak premium dari DL COMIC di Cirebon.</p>
+    <button class="btn btn-primary">Baca Sekarang</button>
+    <button class="btn btn-outline">Beli Komik</button>
+  </div>  <img src="https://via.placeholder.com/420x420" alt="comic">
+</section><!-- FEATURES --><section id="features">
+  <h2 class="title">Kenapa DL COMIC?</h2>
+  <div class="features">
+    <div class="card">📱 Baca online kapan saja dengan mudah</div>
+    <div class="card">📚 Komik cetak premium untuk koleksi</div>
+    <div class="card">⚡ Update cerita cepat dan rutin</div>
+    <div class="card">🎨 Ilustrasi profesional dan modern</div>
+  </div>
+</section><!-- COMICS --><section id="comics">
+  <h2 class="title">Komik Populer</h2>
+  <div class="comics">
+    <div class="comic">
+      <img src="https://via.placeholder.com/300x250">
+      <div class="comic-content">
+        <h3>Judul Komik 1</h3>
+        <button class="btn btn-primary">Baca</button>
+      </div>
+    </div><div class="comic">
+  <img src="https://via.placeholder.com/300x250">
+  <div class="comic-content">
+    <h3>Judul Komik 2</h3>
+    <button class="btn btn-primary">Baca</button>
+  </div>
+</div>
+
+  </div>
+</section><footer>
+  © 2026 DL COMIC - Cirebon
+</footer><script>
+  const elements = document.querySelectorAll('.card, .comic');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => observer.observe(el));
+</script></body>
+</html>
