@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DL COMICS - Forging The Next Vision</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cinzel': ['Cinzel', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'dl-black': '#0a0a0a',
+                        'dl-dark': '#121212',
+                        'dl-gold': '#d4af37',
+                        'dl-gold-light': '#f4d03f',
+                        'dl-purple': '#6b21a8',
+                        'dl-blue': '#1e3a8a',
+                    },
+                    animation: {
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.5)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5), inset 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+        .hero-bg {
+            background: radial-gradient(ellipse at center, rgba(107, 33, 168, 0.3) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom right, rgba(212, 175, 55, 0.2) 0%, transparent 40%),
+                        linear-gradient(to bottom, #0a0a0a 0%, #121212 100%);
+        }
+        .medieval-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+        .btn-secondary {
+            border: 2px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .comic-grid {
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+    </style>
+</head>
+<body class="font-inter antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-dl-black/90 backdrop-blur-md border-b border-dl-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-dl-gold to-dl-gold-light rounded-lg flex items-center justify-center shadow-lg shadow-dl-gold/30">
+                        <span class="text-dl-black font-cinzel font-bold text-2xl">DL</span>
+                    </div>
+                    <span class="font-cinzel font-bold text-2xl tracking-wider text-white">COMICS</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-300 hover:text-dl-gold transition-colors font-medium">Tentang</a>
+                    <a href="#why-us" class="text-gray-300 hover:text-dl-gold transition-colors font-medium">Keunggulan</a>
+                    <a href="#vision" class="text-gray-300 hover:text-dl-gold transition-colors font-medium">Visi & Misi</a>
+                    <a href="#contact" class="text-gray-300 hover:text-dl-gold transition-colors font-medium">Kontak</a>
+                </div>
+                <button class="md:hidden text-dl-gold text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center hero-bg pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 comic-grid opacity-50"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-dl-purple/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-dl-gold/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        
+        <!-- Floating Comic Elements -->
+        <div class="absolute top-1/4 left-10 animate-float opacity-20">
+            <i class="fas fa-scroll text-6xl text-dl-gold"></i>
+        </div>
+        <div class="absolute bottom-1/3 right-20 animate-float opacity-20" style="animation-delay: 3s;">
+            <i class="fas fa-crown text-5xl text-dl-gold"></i>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Logo Display -->
+            <div class="mb-8 inline-block">
+                <div class="w-24 h-24 mx-auto bg-gradient-to-br from-dl-gold to-dl-gold-light rounded-2xl flex items-center justify-center shadow-2xl shadow-dl-gold/40 mb-6 animate-glow">
+                    <span class="text-dl-black font-cinzel font-bold text-4xl">DL</span>
+                </div>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-cinzel font-bold text-5xl md:text-7xl lg:text-8xl mb-6 text-glow leading-tight">
+                <span class="gradient-text">Forging</span><br>
+                <span class="text-white">The Next Vision</span>
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto font-light">
+                Perusahaan pembuatan dan baca komik terdepan di Indonesia
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="#comics" class="btn-primary px-8 py-4 rounded-full text-dl-black font-bold text-lg flex items-center gap-3 group">
+                    <i class="fas fa-book-open group-hover:rotate-12 transition-transform"></i>
+                    Baca Komik
+                </a>
+                <a href="#contact" class="btn-secondary px-8 py-4 rounded-full text-dl-gold font-bold text-lg flex items-center gap-3">
+                    <i class="fas fa-envelope"></i>
+                    Hubungi Kami
+                </a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-dl-gold text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="relative py-24 bg-dl-dark medieval-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-dl-gold/20 to-dl-purple/20 rounded-2xl blur-xl"></div>
+                    <div class="relative glass-card rounded-2xl p-8 neon-border">
+                        <div class="aspect-square rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-dl-black to-gray-900 flex items-center justify-center">
+                            <i class="fas fa-feather-alt text-8xl text-dl-gold/30"></i>
+                        </div>
+                        <div class="flex justify-between items-center text-dl-gold/60 text-sm">
+                            <span><i class="fas fa-pen-nib mr-2"></i>Est. 2020</span>
+                            <span><i class="fas fa-star mr-2"></i>Premium Quality</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="h-px w-12 bg-dl-gold"></div>
+                        <span class="text-dl-gold font-cinzel tracking-widest text-sm">TENTANG KAMI</span>
+                    </div>
+                    <h2 class="font-cinzel font-bold text-4xl md:text-5xl mb-6 text-white">
+                        DL <span class="gradient-text">COMICS</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-6">
+                        DL COMICS adalah perusahaan komik profesional yang berdedikasi untuk menciptakan karya-karya visual yang menginspirasi. Kami menggabungkan seni tradisional dengan teknologi modern untuk menghasilkan komik berkualitas tinggi.
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        Fokus kami pada <span class="text-dl-gold font-semibold">kualitas</span>, <span class="text-dl-gold font-semibold">kreativitas</span>, dan <span class="text-dl-gold font-semibold">inovasi</span> membuat setiap proyek menjadi masterpiece yang tak terlupakan.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-cinzel font-bold text-dl-gold mb-1">50+</div>
+                            <div class="text-sm text-gray-500">Komik Diterbitkan</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-cinzel font-bold text-dl-gold mb-1">100K+</div>
+                            <div class="text-sm text-gray-500">Pembaca Aktif</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-cinzel font-bold text-dl-gold mb-1">25+</div>
+                            <div class="text-sm text-gray-500">Awards</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="relative py-24 bg-dl-black">
+        <div class="absolute inset-0 bg-gradient-to-b from-dl-dark to-dl-black"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <i class="fas fa-crown text-dl-gold text-xl"></i>
+                    <span class="text-dl-gold font-cinzel tracking-widest text-sm">KEUNGGULAN KAMI</span>
+                    <i class="fas fa-crown text-dl-gold text-xl"></i>
+                </div>
+                <h2 class="font-cinzel font-bold text-4xl md:text-5xl text-white mb-4">Why Choose <span class="gradient-text">DL COMICS</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Keunggulan yang membuat kami menjadi pilihan utama dalam industri komik</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-2xl p-8 text-center group hover:transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-dl-gold/20 to-dl-gold/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform border border-dl-gold/30">
+                        <i class="fas fa-network-wired text-3xl text-dl-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel font-bold text-xl mb-3 text-white">Terintegrasi</h3>
+                    <p class="text-gray-400 text-sm">Perusahaan komik terintegrasi dengan sistem produksi lengkap dari konsep hingga distribusi</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-2xl p-8 text-center group hover:transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-dl-gold/20 to-dl-gold/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform border border-dl-gold/30">
+                        <i class="fas fa-gem text-3xl text-dl-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel font-bold text-xl mb-3 text-white">Kualitas Terjamin</h3>
+                    <p class="text-gray-400 text-sm">Kualitas & kreativitas terjamin dengan standar internasional dan tim profesional berpengalaman</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-2xl p-8 text-center group hover:transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-dl-gold/20 to-dl-gold/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform border border-dl-gold/30">
+                        <i class="fas fa-users text-3xl text-dl-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel font-bold text-xl mb-3 text-white">Tim Profesional</h3>
+                    <p class="text-gray-400 text-sm">Tim profesional yang terdiri dari ilustrator, writer, dan editor terbaik di industri</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card rounded-2xl p-8 text-center group hover:transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-dl-gold/20 to-dl-gold/5 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform border border-dl-gold/30">
+                        <i class="fas fa-puzzle-piece text-3xl text-dl-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel font-bold text-xl mb-3 text-white">Solusi Lengkap</h3>
+                    <p class="text-gray-400 text-sm">Solusi lengkap untuk semua kebutuhan komik Anda, dari indie hingga commercial grade</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section id="vision" class="relative py-24 bg-dl-dark overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-10 left-10 w-64 h-64 border border-dl-gold rounded-full"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 border border-dl-gold rounded-full"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-dl-gold font-cinzel tracking-widest text-sm">ARAH PERUSAHAAN</span>
+                <h2 class="font-cinzel font-bold text-4xl md:text-5xl text-white mt-4">Visi & <span class="gradient-text">Misi</span></h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Vision -->
+                <div class="glass-card rounded-2xl p-10 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-dl-gold/10 rounded-full blur-2xl group-hover:bg-dl-gold/20 transition-all"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-dl-gold to-dl-gold-light rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-eye text-dl-black text-2xl"></i>
+                        </div>
+                        <h3 class="font-cinzel font-bold text-3xl text-white">Visi</h3>
+                    </div>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Menjadi <span class="text-dl-gold font-semibold">perusahaan inovatif & terpercaya</span> dalam industri komik yang menginspirasi generasi baru melalui karya-karya visual berkualitas tinggi dan cerita yang mendalam.
+                    </p>
+                    <div class="mt-6 flex gap-3">
+                        <span class="px-4 py-2 bg-dl-gold/10 border border-dl-gold/30 rounded-full text-dl-gold text-sm">Inovatif</span>
+                        <span class="px-4 py-2 bg-dl-gold/10 border border-dl-gold/30 rounded-full text-dl-gold text-sm">Terpercaya</span>
+                    </div>
+                </div>
+
+                <!-- Mission -->
+                <div class="glass-card rounded-2xl p-10 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-dl-purple/20 rounded-full blur-2xl group-hover:bg-dl-purple/30 transition-all"></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-dl-purple to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-rocket text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-cinzel font-bold text-3xl text-white">Misi</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-dl-gold mt-1"></i>
+                            <span class="text-gray-300">Menghasilkan <span class="text-white font-semibold">produk berkualitas</span> dengan standar internasional</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-dl-gold mt-1"></i>
+                            <span class="text-gray-300">Menciptakan <span class="text-white font-semibold">desain kreatif</span> yang orisinal dan menginspirasi</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-dl-gold mt-1"></i>
+                            <span class="text-gray-300">Membangun <span class="text-white font-semibold">bisnis berkelanjutan</span> yang bermanfaat bagi komunitas</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="relative py-24 bg-dl-black overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-dl-gold/5 via-transparent to-dl-purple/5"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-dl-gold/5 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="glass-card rounded-3xl p-12 md:p-16 neon-border">
+                <div class="mb-8">
+                    <i class="fas fa-handshake text-6xl text-dl-gold mb-6 animate-pulse-slow"></i>
+                </div>
+                <h2 class="font-cinzel font-bold text-4xl md:text-5xl text-white mb-6">
+                    Siap Bekerja Sama dengan <span class="gradient-text">Kami?</span>
+                </h2>
+                <p class="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
+                    Mari wujudkan visi komik Anda bersama DL COMICS. Hubungi kami sekarang untuk diskusi lebih lanjut.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="https://wa.me/6281234567890" target="_blank" class="btn-primary px-8 py-4 rounded-full text-dl-black font-bold text-lg flex items-center justify-center gap-3 group">
+                        <i class="fab fa-whatsapp text-2xl group-hover:scale-110 transition-transform"></i>
+                        WhatsApp
+                    </a>
+                    <a href="mailto:contact@dlcomics.com" class="btn-secondary px-8 py-4 rounded-full text-dl-gold font-bold text-lg flex items-center justify-center gap-3">
+                        <i class="fas fa-envelope text-xl"></i>
+                        Email / Kontak
+                    </a>
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-dl-gold/20 flex justify-center gap-8">
+                    <a href="#" class="text-gray-400 hover:text-dl-gold transition-colors text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-dl-gold transition-colors text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-dl-gold transition-colors text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-dl-gold transition-colors text-2xl">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dl-dark border-t border-dl-gold/20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <div class="w-10 h-10 bg-gradient-to-br from-dl-gold to-dl-gold-light rounded-lg flex items-center justify-center">
+                        <span class="text-dl-black font-cinzel font-bold text-lg">DL</span>
+                    </div>
+                    <span class="font-cinzel font-bold text-xl text-white">COMICS</span>
+                </div>
+                <p class="text-gray-500 text-sm">
+                    © 2024 DL COMICS. All rights reserved. Forging The Next Vision.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg', 'shadow-dl-gold/10');
+            } else {
+                nav.classList.remove('shadow-lg', 'shadow-dl-gold/10');
+            }
+        });
+    </script>
+</body>
+</html>
